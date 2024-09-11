@@ -79,5 +79,41 @@
     <hr>
 
 <hr>
+
+<h2>Ejercicio 3</h2>
+        <p>Muestra el contenido de cada variable inmediatamente después de cada asignación,
+            verificar la evolución del tipo de estas variables (imprime todos los componentes de los
+            arreglo):</p>
+        <p>$a = “PHP5”;</p>
+        <p>$z[] = &$a;</p>
+        <p>$b = “5a version de PHP”;</p>
+        <p>$c = $b*10;</p>
+        <p>$a .= $b;</p>
+        <p>$b *= $c;</p>
+        <p>$z[0] = “MySQL”;</p>
+        <br>
+        <p><b>Ejercicio realizado:</b></p>
+        <?php
+            $a = "PHP5 ";
+            echo '<li>$a: '.$a.'</li>';
+            $z[] = &$a;
+            echo '<li>$z: ' . print_r($z, true) . '</li>';
+            $b = "5a version de PHP";
+            echo '<li>$b: '.$b.'</li>';
+            $c = intval($b)*10;
+            echo '<li>$c: '.$c.'</li>';
+            $a .= $b;
+            echo '<li>$a: '.$a.'</li>';
+            settype($b, 'int');
+            $b *= $c;
+            echo '<li>$b: '.$b.'</li>';
+            $z[0] = "MySQL";
+            echo '<li>$z: ' . print_r($z, true) . '</li>';
+        ?>
+
+    <br>
+    <hr>
+
+    
 </body>
 </html>
