@@ -31,6 +31,7 @@
         echo '<li>$house*5 es inválida porque el símbolo * no está permitido.</li>';
         echo '</ul>';
     ?>
+<hr>
 
 <h2>Ejercicio 2</h2>
     <p>Proporcionar los valores de $a, $b, $c como sigue:</p>
@@ -114,7 +115,7 @@
     <br>
     <hr>
 
-    <h2>Ejercicio 4</h2>
+<h2>Ejercicio 4</h2>
     <p>Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de
     la matriz $GLOBALS o del modificador global de PHP.</p>
     <?php
@@ -144,7 +145,7 @@
 
     <br>
     <hr>
-    <h2>Ejercicio 5</h2>
+<h2>Ejercicio 5</h2>
         <p>Dar el valor de las variables $a, $b, $c al final del siguiente script:</p>
         <p>$a = “7 personas”;</p>
         <p>$b = (integer) $a;</p>
@@ -171,7 +172,7 @@
     <br>
     <hr>
 
-    <h2>Ejercicio 6</h2>
+<h2>Ejercicio 6</h2>
         <p>Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas
         usando la función var_dump(<datos>).</p>
         <p>Después investiga una función de PHP que permita transformar el valor booleano de $c y $e
@@ -211,5 +212,18 @@
         ?>
     <br>
     <hr>
+
+<h2>Ejercicio 7</h2>
+        <p>Usando la variable predefinida $_SERVER, determina lo siguiente:</p>
+        <p>a. La versión de Apache y PHP,</p>
+        <p>b. El nombre del sistema operativo (servidor),</p>
+        <p>c. El idioma del navegador (cliente).</p>
+        <br>
+
+        <?php
+            echo '<li><b>Versión de Apache y PHP:</b> ' . $_SERVER['SERVER_SOFTWARE'] . '</li><br>';
+            echo '<li><b>Nombre del sistema operativo:</b> ' . PHP_OS . '</li><br>';
+            echo '<li><b>Idioma del navegador:</b> ' . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . '</li><br>';
+        ?>
 </body>
 </html>
