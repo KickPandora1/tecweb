@@ -92,3 +92,23 @@
     }
 ?> 
 
+<?php
+    function asciiLetras(){
+        // Crear el arreglo con índices de 97 a 122 y sus valores correspondientes
+        $arreglo = [];
+        
+        for ($i = 97; $i <= 122; $i++) {
+            $arreglo[$i] = chr($i); // Asignar el carácter correspondiente a cada índice
+        }
+
+        // Generar una tabla en XHTML usando el ciclo foreach
+        echo "<table border='1'>";
+        echo "<tr><th>Código ASCII</th><th>Letra</th></tr>";
+
+        foreach ($arreglo as $key => $value) {
+            echo "<tr><td>$key</td><td>$value</td></tr>"; // Mostrar cada clave (ASCII) y su valor (letra)
+        }
+
+        echo "</table>";
+    }
+?>
