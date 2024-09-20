@@ -21,9 +21,20 @@
     ?>
 
     <h2>Ejercicio 2</h2>
-        <p>Crea un programa para la generacion repetitiva de 3 numeros aleatorios hasta obtener una secuencia compuesta por impar, par, impar<p>
-        <?php
-            generarNum();
-        ?>
+    <p>Crea un programa para la generacion repetitiva de 3 numeros aleatorios hasta obtener una secuencia compuesta por impar, par, impar<p>
+    <?php
+        generarNum();
+    ?>
+
+    <h2>Ejercicio 3</h2>
+    <p>3.1 Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente, pero que además sea múltiplo de un número dado.<p>
+    <?php
+        if (isset($_GET['multiplo'])) {
+            $multiplo = intval($_GET['multiplo']);
+            generarMultiplo($multiplo);
+        } else {
+            echo "Por favor, proporciona un número para encontrar su múltiplo como ?multiplo=3 en la url";
+        }
+    ?>
 </body>
 </html>
