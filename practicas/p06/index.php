@@ -38,11 +38,31 @@
         }
     ?>
 
-<!-- ******************************************************************Ejercicio 3****************************************************************** -->
+<!-- ******************************************************************Ejercicio 4****************************************************************** -->
     <h2>Ejercicio 4</h2>
     <p>Crear un arreglo cuyos índices van de 97 a 122 y cuyos valores son las letras de la ‘a’ a la ‘z’. Usa la función chr(n) que devuelve el caracter cuyo código ASCII es n para poner el valor en cada índice.</p>
     <?php
         asciiLetras();
     ?>
+
+<!-- ******************************************************************Ejercicio 5****************************************************************** -->
+    <h2>Ejercicio 5</h2>
+    <p>Usar las variables $edad y $sexo en una instrucción if para identificar una persona de sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un mensaje de bienvenida apropiado.</p>
+    <form action="http://localhost:8089/tecweb/practicas/p06/index.php" method="POST">
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required><br>
+
+        <label for="sexo">Sexo:</label>
+        <select label="sexo" name="sexo" required><br>
+            <option value="femenino">Femenino</option>
+            <option value="masculino">Masculino</option>
+        </select><br>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <?php if ($message): ?>
+        <?php echo $message; ?>
+    <?php endif; ?>
+
 </body>
 </html>

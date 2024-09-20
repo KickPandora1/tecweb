@@ -112,3 +112,22 @@
         echo "</table>";
     }
 ?>
+
+
+<?php
+$message = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $edad = $_POST['edad'];
+    $sexo = $_POST['sexo'];
+
+    if ($sexo == 'femenino' && $edad >= 18 && $edad <= 35) {
+        $message = "<h1>Bienvenida</h1>
+            <p>Usted está en el rango de edad permitido.</p>";
+
+    } else {
+        $message = "<h1>Error</h1>
+            <p>Lo sentimos, usted no cumple con los criterios requeridos.</p>";
+    }
+}
+?>
+
