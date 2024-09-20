@@ -59,10 +59,34 @@
         </select><br>
         <input type="submit" value="Enviar">
     </form>
+    
 
-    <?php if ($message): ?>
-        <?php echo $message; ?>
-    <?php endif; ?>
+    <?php 
+        mujer($_POST["edad"], $_POST["sexo"]);
+    ?>
+
+<!-- ******************************************************************Ejercicio 5****************************************************************** -->
+    <h2>Ejercicio 6</h2>
+    <p>Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de una ciudad.<p>
+
+    <h3>Consultar vehiculos</h3>
+    <form method="post">
+        Matrícula: <input type="text" name="matricula">
+        <input type="submit" value="Consultar">
+        <br><br>
+    </form>
+
+    <form method="post">
+        <input type="submit" name="todos" value="Lista de todos los autos" style="margin-bottom: 20px">
+    </form>
+    </fieldset>
+
+    <?php
+        $matricula = isset($_POST["matricula"]) ? $_POST["matricula"] : null;
+        $todos = isset($_POST["todos"]) ? $_POST["todos"] : null;
+        listaAutos($matricula, $todos);
+        
+    ?>
 
 </body>
 </html>
