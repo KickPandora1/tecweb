@@ -6,29 +6,31 @@
     <title>Formulario De Productos</title>
 </head>
 <body>
-    <form id="formularioProductos" action="http://localhost:8089/tecweb/practicas/p08/set_producto.php" method="post">
+    <form id="formularioProductos" action="http://localhost:8089/tecweb/practicas/p08/set_producto_v2.php" method="post">
 
         <h2>Información de Producto</h2>
     
-          <fieldset>
+        <fieldset>
             <legend>Datos</legend>
     
             <ul>
-              <li><label for="form-name">Nombre:</label> <input type="text" name="name" id="form-name" required></li><br>
-              <li><label for="form-brand">Marca: </label> <input type="text" name="brand" id="form-brand" required></li><br>
-              <li><label for="form-model">Modelo:</label> <input type="text" name="model" id="form-model" required></li><br>
-              <li><label for="form-price">Precio: </label> <input type="number" name="price" id="form-price" required></li><br>
-              <li><label for="form-details">Detalles:</label><br><textarea name="details" rows="4" cols="60" id="form-details" placeholder="No más de 300 caracteres de longitud" required></textarea></li><br>
-              <li><label for="form-unities">Unidades:</label> <input type="number" name="unities" id="form-unities" required></li>
-            </ul>
-          </fieldset>
+            <li><label for="form-nombre">Nombre:</label> <input type="text" name="nombre" id="form-nombre" placeholder = "Nombre" required></li><br/>
+            <li><label for="form-marca">Marca:</label> <input type="text" name="marca" id="form-marca" placeholder = "Marca" required></li><br/>
+            <li><label for="form-modelo">Modelo:</label> <input type="text" name="modelo" id="form-modelo" placeholder = "Modelo" required></li><br/>
+            <li><label for="form-precio">Precio:</label> <input type="number" name="precio" id="form-precio" placeholder = "Precio" step="0.01" min="0" required></li><br/>
+            <li><label for="form-detalles">Detalles:</label><br><textarea name="detalles" rows="4" cols="60" id="form-detalles" placeholder="No más de 300 caracteres de longitud" required></textarea></li><br/>
+            <li><label for="form-unidades">Unidades:</label> <input type="number" name="unidades" id="form-unidades" placeholder = "Unidades" required></li><br/>
+            <li><label for="form-urlImage">URL de Imagen:</label> <input type="text" name="urlImage" id="form-urlImage" placeholder = "URL" required></li>
+
+        </ul>
+        </fieldset>
     
-          </fieldset>
+        </fieldset>
     
-          <p>
+        <p>
             <input type="submit" value="Agregar">
             <input type="reset">
-          </p>
+        </p>
     
         </form>
 </body>
