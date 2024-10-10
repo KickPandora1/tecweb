@@ -45,13 +45,13 @@ function veriModelo(){
 
 
 if (mod.length > 25) {
-    alert('El nombre es demasiado largo');
+    alert('El nombre del modelo es demasiado largo');
     return false;
 }
     return true;
 
 }
-
+//////////////////////////////////////////////////////////////////////////////////
 function veriPrecio() {
 
     var pre1 = document.getElementById('form-precio').value;
@@ -70,10 +70,9 @@ function veriPrecio() {
 
     return true;
 }
-
-/*
+//////////////////////////////////////////////////////////////////////////////////
 function limDetalles() {
-    var det = document.getElementById('detalles').value;
+    var det = document.getElementById('form-detalles').value;
     
     if (det.length > 250) {
         alert('Los detalles son demasiado largos');
@@ -82,34 +81,32 @@ function limDetalles() {
 
     return true;
 }
-
+//////////////////////////////////////////////////////////////////////////////////
 function veriUnidades(){
-    var uni = document.getElementById('unidades').value;
+    var uni1 = document.getElementById('form-unidades').value;
 
-    if (uni.length == 0) {
+    if (uni1.length == 0) {
         alert('Las unidades del Producto son requeridas');
         return false;
     }
-    return true;
-}
 
-function verifImagen() {
-    var img = document.getElementById('imagen').value;
-    
-    if (img.length == 0) {
-        alert('Se pondra una imagen predeterminada');
-        return //poner la ruta predeterminada;
-    }
+    var uni2 = parseFloat(document.getElementById('form-unidades').value);
 
-    return true;
-}
-    *function limDetalles() {
-    var det = document.getElementById('detalles').value;
-    
-    if (det.length > 250) {
-        alert('Los detalles son demasiado largos');
+    if (uni2 < 0) {
+        alert('El numero de unidades debe ser mayor a 0');
         return false;
     }
 
     return true;
-}*/
+}
+//////////////////////////////////////////////////////////////////////////////////
+function verifImagen() {
+    var img = document.getElementById('form-imagen').value;
+    
+    if (img.length == 0) {
+        alert('Se pondra una imagen predeterminada');
+        document.getElementById('form-imagen').value = 'http://localhost:8089/tecweb/practicas/P09/images/def.jpg';
+    }
+
+    return true;
+}
