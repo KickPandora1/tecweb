@@ -51,17 +51,27 @@ if (mod.length > 25) {
     return true;
 
 }
-/*
-function veriPrecio(){
-    var pre = document.getElementById('precio').value;
 
-    if (pre.length == 0) {
+function veriPrecio() {
+
+    var pre1 = document.getElementById('form-precio').value;
+
+    if (pre1.length == 0) {
         alert('Es requerido el precio del Producto');
         return false;
     }
+
+    var pre2 = parseFloat(document.getElementById('form-precio').value);
+
+    if (pre2 <= 99.99) {
+        alert('El precio debe ser mayor a 99.99');
+        return false;
+    }
+
     return true;
 }
 
+/*
 function limDetalles() {
     var det = document.getElementById('detalles').value;
     
