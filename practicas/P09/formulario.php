@@ -14,12 +14,18 @@
 <body>
     <h1>Datos Personales</h1>
 
-    <form id="miFormulario" onsubmit="" method="post">
+    <form id="miFormulario" method="post">
         <fieldset>
-            <legend>Actualiza los datos personales de esta persoa:</legend>
+            <legend>Actualiza los datos personales de esta persona:</legend>
             <ul>
-                <li><label>Nombre:</label> <input type="text" name="name" value="<?= !empty($_POST['nombre'])?$_POST['nombre']:$_GET['nombre'] ?>"></li>
-                <li><label>Edad:</label> <input type="text" name="age" value="<?= !empty($_POST['edad'])?$_POST['edad']:$_GET['edad'] ?>"></li>
+                <li>
+                    <label>Nombre:</label> 
+                    <input type="text" name="name" value="<?= !empty($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : '' ?>">
+                </li>
+                <li>
+                    <label>Edad:</label> 
+                    <input type="text" name="age" value="<?= !empty($_POST['edad']) ? htmlspecialchars($_POST['edad']) : '' ?>">
+                </li>
             </ul>
         </fieldset>
         <p>
