@@ -23,10 +23,10 @@
             /**
              * SEGUIMIENTO DE LOS DATOS RECIBIDOS DEL SERVIDOR
              * */
-            client.onreadystatechange = function () {
-                //console.log(client.responseText);
-                document.getElementById('titulo').innerHTML = client.responseText;
-            };
+                client.onreadystatechange = function () {
+                    //console.log(client.responseText);
+                    document.getElementById('titulo').innerHTML = client.responseText;
+                };
             /**
              * SE ENVÍA LA SOLICITUD CON LAS CONSIDERACIONES ANTERIORES
              * */

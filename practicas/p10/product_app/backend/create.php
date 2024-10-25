@@ -19,7 +19,7 @@
             $precio = $jsonOBJ->precio;
             $detalles = isset($jsonOBJ->detalles) ? $jsonOBJ->detalles : '';
             $unidades = $jsonOBJ->unidades;
-            $imagen = isset($jsonOBJ->imagen) ? $jsonOBJ->imagen : 'img/imagen.png';
+            $imagen = isset($jsonOBJ->imagen) ? $jsonOBJ->imagen : 'img/default.png';
             //Se revisa si el producto ya existe
             $queryRevision = "SELECT * FROM productos WHERE nombre = ? AND eliminado = 0";
             $verif = $conexion->prepare($queryRevision);
@@ -28,7 +28,7 @@
             $result = $verif->get_result();
             //Si el producto se repite
             if($result->num_rows > 0){
-                echo json_encode(["success" => false, "message"=>"El producto es un producto existente."]);
+                echo json_encode(["success" => false, "message"=>"El producto ya existe."]);
             }
             else{
                 //El producto no existe o esta eliminado
@@ -38,7 +38,8 @@
                 //Realizar la insercción
                 if($insert->execute()){
                     //Caso éxitoso
-                    echo json_encode(["success" => true, "message"=>"El producto se ha insertado correctamente."]);                }
+                    echo json_encode(["success" => true, "message"=>"El producto se ha insertado correctamente."]);                
+                }
                 else{
                     //Caso fallido
                     echo json_encode(["success" => false, "message"=>"El producto no ha podido ser insertado."]);

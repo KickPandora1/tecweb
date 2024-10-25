@@ -215,7 +215,7 @@ function verifNombre(){
 function verifMarca(json){
     var marca = json.marca;
     var final = true;
-    let marcas = ["HP", "Asus", "Acer", "Huawei"];
+    let marcas = ["Yamaha", "Pearl", "Roland", "DW"];
     if(marca.length == 0){
         alert('La marca es un requisito requerido.');
         final = false;
