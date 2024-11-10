@@ -23,9 +23,9 @@
                     <label for="form-brand">Marca:</label>
                     <select name="marca" id="form-brand">
                         <option value="" disabled <?= !empty($_POST['marca']) || !empty($_GET['marca']) ? '' : 'selected' ?>>Selecciona una marca</option>
-                        <option value="Yamaha" <?= (!empty($_POST['marca']) && $_POST['marca'] == 'RollerBlade') || (!empty($_GET['marca']) && $_GET['marca'] == 'Yamaha') ? 'selected' : '' ?>>Yamaha</option>
-                        <option value="Roland" <?= (!empty($_POST['marca']) && $_POST['marca'] == 'Head') || (!empty($_GET['marca']) && $_GET['marca'] == 'Roland') ? 'selected' : '' ?>>Roland</option>
-                        <option value="Pearl" <?= (!empty($_POST['marca']) && $_POST['marca'] == 'Tommaso') || (!empty($_GET['marca']) && $_GET['marca'] == 'Pearl') ? 'selected' : '' ?>>Pearl</option>
+                        <option value="Yamaha" <?= (!empty($_POST['marca']) && $_POST['marca'] == 'Yamaha') || (!empty($_GET['marca']) && $_GET['marca'] == 'Yamaha') ? 'selected' : '' ?>>Yamaha</option>
+                        <option value="Roland" <?= (!empty($_POST['marca']) && $_POST['marca'] == 'Roland') || (!empty($_GET['marca']) && $_GET['marca'] == 'Roland') ? 'selected' : '' ?>>Roland</option>
+                        <option value="Pearl" <?= (!empty($_POST['marca']) && $_POST['marca'] == 'Pearl') || (!empty($_GET['marca']) && $_GET['marca'] == 'Pearl') ? 'selected' : '' ?>>Pearl</option>
                     </select>
                 </li><br/>
                 <li>

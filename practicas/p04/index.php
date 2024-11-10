@@ -13,7 +13,7 @@
         //AQUI VA MI CÓDIGO PHP
         $_myvar;
         $_7var;
-        //myvar;       // Inválida
+        //_myvar;       // Inválida
         $myvar;
         $var7;
         $_element1;
