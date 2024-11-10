@@ -4,6 +4,5 @@
 
     $prodObj = new Products('marketzone');
     $nombre = $_POST['nombre'];  $prodObj->singleByName($nombre);
-    
     echo $prodObj->getData();
 ?>

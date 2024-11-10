@@ -1,33 +1,9 @@
 <?php
-    use backend\myapi\Products as Products;
-    require_once __DIR__.'/myapi/Products.php'; 
+    use backend\myapi\Products;
+    include_once __DIR__.'/myapi/Products.php';
 
-    $productos = new Products('marketplace');
+    $prodObj = new Products('marketzone');
     $search = $_GET['search'];  $prodObj->search($search);
-    echo $productos->getData();
-
-    /*include_once __DIR__.'/database.php';
-
-    $data = array();
-    if( isset($_GET['search']) ) {
-        $search = $_GET['search'];
-        $sql = "SELECT * FROM productos WHERE (id = '{$search}' OR nombre LIKE '%{$search}%' OR marca LIKE '%{$search}%' OR detalles LIKE '%{$search}%') AND eliminado = 0";
-        if ( $result = $conexion->query($sql) ) {
-			$rows = $result->fetch_all(MYSQLI_ASSOC);
-
-            if(!is_null($rows)) {
-                foreach($rows as $num => $row) {
-                    foreach($row as $key => $value) {
-                        $data[$num][$key] = utf8_encode($value);
-                    }
-                }
-            }
-			$result->free();
-		} else {
-            die('Query Error: '.mysqli_error($conexion));
-        }
-		$conexion->close();
-    } 
     
-    echo json_encode($data, JSON_PRETTY_PRINT);*/
+    echo $prodObj->getData();
 ?>

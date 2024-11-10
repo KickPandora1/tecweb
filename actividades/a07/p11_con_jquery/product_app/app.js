@@ -8,15 +8,23 @@ var baseJSON = {
     "imagen": "img/default.png"
 };
 
+
+$(document).ready(function() {  // Corregido aquí, quitando el paréntesis extra
+    init(); // Llama a init() aquí
+    let edit = false;
+});
+
 function init() {
     /**
      * Convierte el JSON a string para poder mostrarlo
      * ver: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/JSON
      */
-    var JsonString = JSON.stringify(baseJSON,null,2);
+    var JsonString = JSON.stringify(baseJSON, null, 2);
     document.getElementById("description").value = JsonString;
-    // fetchProduct();
+    fetchProduct();
 }
+
+
 
 $(document).ready(function() {
     let edit = false;

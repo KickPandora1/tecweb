@@ -12,4 +12,4 @@
     if(!$conexion) {
         die('¡Base de datos NO conextada!');
     }
-?>*/
+?>
