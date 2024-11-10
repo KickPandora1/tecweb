@@ -1,8 +1,9 @@
 <?php
-    use backend\myapi\Products;
-    include_once __DIR__.'/myapi/Products.php';
+    use backend\myapi\Productos;
 
-    $prodObj = new Products('marketzone');
-    $nombre = $_POST['nombre'];  $prodObj->singleByName($nombre);
-    echo $prodObj->getData();
+    require_once __DIR__ . '/myapi/Productos.php';
+
+    $productos = new Productos('marketzone');
+    $productos->singleByName($_POST['name']);
+    echo $productos ->getData();
 ?>

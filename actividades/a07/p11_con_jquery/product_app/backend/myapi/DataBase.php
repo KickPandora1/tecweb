@@ -3,14 +3,13 @@ namespace backend\myapi;
 abstract class DataBase{
     protected $conexion;
 
-    protected function DataBase($db,$user='root',$pass='Ubi131418'){
+    protected function DataBase($db,$user,$pass){
         $this->conexion =@mysqli_connect(
             
             'localhost',
-            $db,
             $user,
             $pass,
-            $port
+            $db
         );
 
         if(!$this->conexion) {

@@ -1,9 +1,9 @@
 <?php
-    use backend\myapi\Products;
-    include_once __DIR__.'/myapi/Products.php';
+    use backend\myapi\Productos;
 
-    $prodObj = new Products('marketzone');
-    $prodObj->edit($producto = file_get_contents('php://input'));
-    
-    echo $prodObj->getData();
+    require_once __DIR__ . '/myapi/Productos.php';
+
+    $productos = new Productos('marketzone');
+    $productos->edit($producto=json_decode(file_get_contents('php://input')));
+    echo $productos ->getData();
 ?>

@@ -1,5 +1,11 @@
 <?php
-    $conexion = mysqli_connect('localhost', 'root', 'Ubi131418', 'marketzone');
+    $conexion = mysqli_connect(
+        'localhost', 
+        'root', 
+        'Ubi131418', 
+        'marketzone',
+        3307
+    );
 
 
     /**

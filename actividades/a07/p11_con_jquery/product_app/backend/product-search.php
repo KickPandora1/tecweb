@@ -1,9 +1,9 @@
 <?php
-    use backend\myapi\Products;
-    include_once __DIR__.'/myapi/Products.php';
+    use backend\myapi\Productos;
 
-    $prodObj = new Products('marketzone');
-    $search = $_GET['search'];  $prodObj->search($search);
-    
-    echo $prodObj->getData();
+    require_once __DIR__ . '/myapi/Productos.php';
+
+    $productos = new Productos('marketzone');
+    $productos->search($_GET['search']);
+    echo $productos ->getData();
 ?>

@@ -139,7 +139,7 @@ function buscarProducto(e) {
     var searchProduct = document.getElementById('search').value;
 
     // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
-    var client = getXMLHttpRequest();
+    var client = new XMLHttpRequest();
     client.open('POST', './backend/read.php', true);
     client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     client.onreadystatechange = function () {
@@ -212,7 +212,7 @@ function validarJson(finalJSON) {
         return false;
     }
     if (!marcasValidas.includes(finalJSON.marca)) {
-        alert('Marca no válida, selecciona una válida (Nintendo, Xbox, Playstation)');
+        alert('Marca no válida, selecciona una válida (Yamaha, Roland, Pearl, Sonor)');
         return false;
     }
 
