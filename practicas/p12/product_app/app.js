@@ -1,25 +1,8 @@
-// JSON BASE A MOSTRAR EN FORMULARIO
-/* var baseJSON = {
-    "precio": 0.0,
-    "unidades": 1,
-    "modelo": "XX-000",
-    "marca": "NA",
-    "detalles": "NA",
-    "imagen": "img/imagen.png"
-}; */
-
-/* function init() {
-     * Convierte el JSON a string para poder mostrarlo
-     * ver: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/JSON
-    var JsonString = JSON.stringify(baseJSON,null,2);
-    document.getElementById("description").value = JsonString;
-}*/
-
 $(document).ready(function() {
 
     let edit = false;
 
-    console.log('JQuery en funcionamiento')
+    console.log('JQuery está trabajando!')
     listadoProductos();
 
     function listadoProductos(){
@@ -122,9 +105,9 @@ $(document).ready(function() {
     });
 
     $('#product-form').submit(function(e) {
+
         e.preventDefault();
 
-        // Crear un objeto con las propiedades deseadas
         var yeison = {
             id: $('#productId').val(),
             nombre: $('#form-name').val(),
@@ -136,14 +119,11 @@ $(document).ready(function() {
             imagen: $('#form-img').val()
         };
 
-        // Convertir el objeto a JSON
         var productoJsonString = JSON.stringify(yeison, null, 3);
 
-        // Si necesitas manipular alguna propiedad en `yeison` después
         yeison['nombre'] = document.getElementById('form-name').value;
         yeison['id'] = document.getElementById('productId').value;
 
-        // Volver a convertir el objeto actualizado a JSON si es necesario
         productoJsonString = JSON.stringify(yeison, null, 3);
 
         var finalJSON = JSON.parse(productoJsonString);
@@ -151,66 +131,81 @@ $(document).ready(function() {
 
         let template_bar = '';
         let errores = [];
+        let correcto =[];
 
-        // Validar nombre
         if (!finalJSON.nombre || finalJSON.nombre.length == 0) {
             errores.push('Ingresa un nombre.');
-            return false;
         }
-        if (finalJSON.nombre.length > 100) {
+        else if (finalJSON.nombre.length > 100) {
             errores.push('El nombre debe tener menos de 100 caracteres.');
-            return false;
+        }
+        else {
+            correcto.push('Nombre válido')
         }
 
         // Validar marca
-        const marcasValidas = ['Roland', 'DW', 'Sonor', 'Pearl', 'Mapex', 'Yamaha', 'Gretsch'];
+        const marcasValidas = ['Tama', 'Roland', 'DW', 'Sonor', 'Pearl', 'Mapex', 'Yamaha', 'Gretsch'];
         if (!finalJSON.marca || finalJSON.marca.length == 0) {
             errores.push('Selecciona una marca.');
             return false;
         }
-        if (!marcasValidas.includes(finalJSON.marca)) {
-            errores.push('Esa marca es invalida.');
-            return false;
+        else if (!marcasValidas.includes(finalJSON.marca)) {
+            errores.push('Marca no válida.');
+        }
+        else {
+            correcto.push('Marca válida.')
         }
 
-        // Validar modelo
         if (!finalJSON.modelo || finalJSON.modelo.length == 0) {
             errores.push('Ingresa un modelo.');
-            return false;
         }
-        if (!/^[a-zA-Z0-9 ]+$/.test(finalJSON.modelo) || finalJSON.modelo.length > 25) {
+        else if (!/^[a-zA-Z0-9 ]+$/.test(finalJSON.modelo) || finalJSON.modelo.length > 25) {
             errores.push('El modelo debe ser alfanumérico y menor a 25 caracteres.');
-            return false;
+        }
+        else {
+            correcto.push('Modelo válido.')
         }
 
-        // Validar precio
         if (!finalJSON.precio || finalJSON.precio.length == 0) {
             errores.push('Ingresa el precio.');
-            return false;
         }
-        if (finalJSON.precio < 99.99) {
+        else if (finalJSON.precio < 99.99) {
             errores.push('El precio debe ser mayor a $99.99.');
-            return false;
+        }
+        else {
+            correcto.push('Precio válido.')
         }
 
-        // Validar detalles
         if (finalJSON.detalles && finalJSON.detalles.length > 250) {
             errores.push('Los detalles deben tener máximo 250 caracteres.');
-            return false;
         }
 
-        // Validar unidades
         if (finalJSON.unidades == null || finalJSON.unidades < 0) {
             errores.push('La cantidad mínima de unidades es 0.');
-            return false;
+        }
+        else if (finalJSON.unidades<1) {
+            errores.push('El campo unidades es obligatorio');
+        }
+        else if (finalJSON.unidades>0){
+            correcto.push('Unidades válidas')
         }
 
-        // Validar imagen
         if (!finalJSON.imagen || finalJSON.imagen.length == 0) {
             finalJSON.imagen = 'img/pre.png';  // Asignar una imagen por defecto
         }
 
-        // Si hay errores, mostrarlos todos
+        if (correcto.length > 1) {
+            template_bar = '<ul>';
+            template_bar+= '<li style="list-style: none;">status: Success</li>';
+            correcto.forEach(bien => {
+                template_bar += `<li style="list-style: none;">message: ${bien}</li>`;
+            });
+            template_bar += '</ul>';
+
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+        }
+
         if (errores.length > 0) {
             template_bar = '<ul>';
             template_bar+= '<li style="list-style: none;">status: Error</li>';
@@ -224,6 +219,7 @@ $(document).ready(function() {
         }
 
         else{
+            
             let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
             console.log(finalJSON);
 
@@ -321,44 +317,45 @@ $(document).ready(function() {
                 let productos = response;
                 if(productos.length > 2) {
                     let template_bar = '';
-                    template_bar += `<li>Ya existe un producto con ese nombre!!!!!!!!</li>`;
+                    template_bar+= '<li style="list-style: none;">status: Error</li>';
+                    template_bar += `<li style="list-style: none;">Ya existe un producto con ese nombre</li>`;
                     document.getElementById("product-result").className = "card my-4 d-block";
                     document.getElementById("container").innerHTML = template_bar;
                 }
                 else{
                     let template_bar = '';
-                    template_bar += `<li>El nombre es valido</li>`;
+                    template_bar+= '<li style="list-style: none;">status: Success</li>';
+                    template_bar += `<li style="list-style: none;">El nombre es valido</li>`;
                     document.getElementById("product-result").className = "card my-4 d-block";
                     document.getElementById("container").innerHTML = template_bar;
                 }
             }
-
         });
     });
 });
 
+let template_bar = '';
+template_bar = '<ul>';
+template_bar+= '<li style="list-style: none;">status: Error</li>';
+
 function validarNombre(){
     var nombre = document.getElementById("form-name");
     if(nombre.value == ''){
-        let template_bar = '';
-        template_bar += `<li>El campo nombre es obligatorio</li>`;
+        template_bar += `<li style="list-style: none;">El campo nombre es obligatorio</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
         document.getElementById("container").innerHTML = template_bar;
     }
     else if (nombre.value.length > 100){
-        let template_bar = '';
-        template_bar += `<li>El nombre debe tener como maximo 100 caracteres</li>`;
+        template_bar += `<li style="list-style: none;">El nombre debe tener como maximo 100 caracteres</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
         document.getElementById("container").innerHTML = template_bar;
-
     }
 }
 
 function validarMarca(){
     var marca = document.getElementById("form-brand");
     if (marca.value == ""){
-        let template_bar = '';
-        template_bar += `<li>El campo marca es obligatorio</li>`;
+        template_bar += `<li style="list-style: none;">El campo marca es obligatorio</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
         document.getElementById("container").innerHTML = template_bar;
     }
@@ -367,8 +364,7 @@ function validarMarca(){
 function validarModelo(){
     var modelo = document.getElementById("form-model");
     if (modelo.value == ''){
-        let template_bar = '';
-        template_bar += `<li>Ingresa un modelo</li>`;
+        template_bar += `<li style="list-style: none;">Ingresa un modelo</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
         document.getElementById("container").innerHTML = template_bar;
     }
@@ -377,14 +373,12 @@ function validarModelo(){
 function validarPrecio(){
     var precio = document.getElementById("form-price");
     if (precio.value == ''){
-        let template_bar = '';
-        template_bar += `<li>Ingresa el precio</li>`;
+        template_bar += `<li style="list-style: none;">Ingresa el precio</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
         document.getElementById("container").innerHTML = template_bar;
     }
     else if (precio.value <= 99.99){
-        let template_bar = '';
-        template_bar += `<li>El precio debe ser mayor a $99.99</li>`;
+        template_bar += `<li style="list-style: none;">El precio debe ser mayor a $99.99</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
         document.getElementById("container").innerHTML = template_bar;
     }
@@ -394,8 +388,7 @@ function validarDetalles(){
     var detalles = document.getElementById("form-details");
     if(detalles.value > 250)
     {
-        let template_bar = '';
-        template_bar += `<li>Los detalles deben tener máximo 250 caracteres</li>`;
+        template_bar += `<li style="list-style: none;">Los detalles deben tener máximo 250 caracteres</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
         document.getElementById("container").innerHTML = template_bar;
     }
@@ -404,14 +397,12 @@ function validarDetalles(){
 function validarUnidades(){
     var unidades = document.getElementById("form-units");
     if (unidades.value == ''){
-        let template_bar = '';
-        template_bar += `<li>El campo unidades es obligatorio</li>`;
+        template_bar += `<li style="list-style: none;">El campo unidades es obligatorio</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
         document.getElementById("container").innerHTML = template_bar;
     }
     else if (unidades.value < 0){
-        let template_bar = '';
-        template_bar += `<li>Cantidad mínima de unidades es 0</li>`;
+        template_bar += `<li style="list-style: none;">Cantidad mínima de unidades es 0</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
         document.getElementById("container").innerHTML = template_bar;
     }
@@ -420,11 +411,9 @@ function validarUnidades(){
 function validarImagen(){
     var imagen = document.getElementById("form-img");
     if (imagen.value == ''){
-        let template_bar = '';
-        template_bar += `<li>Se asignó una imagen por defecto</li>`;
+        template_bar += `<li style="list-style: none;">Se asignó una imagen por defecto</li>`;
         document.getElementById("product-result").className = "card my-4 d-block";
         document.getElementById("container").innerHTML = template_bar;
-
         imagen.value = "img/default.png";
     }
 }

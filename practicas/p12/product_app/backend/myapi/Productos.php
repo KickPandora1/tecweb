@@ -16,7 +16,7 @@ class Productos extends DataBase {
         // SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
         $this->data = array(
             'status'  => 'error',
-            'message' => 'Ya existe un producto con ese nombre!!'
+            'message' => 'Ya existe un producto con ese nombre'
         );
         if(isset($jsonOBJ->nombre)) {
             // SE ASUME QUE LOS DATOS YA FUERON VALIDADOS ANTES DE ENVIARSE

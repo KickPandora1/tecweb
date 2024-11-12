@@ -7,9 +7,9 @@ abstract class DataBase {
     public function __construct($db, $user, $pass) {
         $this->conexion = @mysqli_connect(
             'localhost',
-            $user,
+            'root',
             'Ubi131418',
-            $db
+            'marketzone'
         );
     
         /**

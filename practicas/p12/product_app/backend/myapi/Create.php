@@ -11,16 +11,12 @@
         public function add($object) {
             $producto = $object;
             $this->data = array(
-                'status'  => 'Error',
-                'message' => 'Ya existe un producto con el mismo nombre'
+                'status'  => 'error',
+                'message' => 'Ya existe un producto con ese nombre'
             );
             if(!empty($producto)) {
                 // SE TRANSFORMA EL STRING DEL JASON A OBJETO
                 $jsonOBJ = json_decode($producto);
-                if ($jsonOBJ === null) {
-                    $this->data['message'] = "Error en la decodificación JSON";
-                    return;
-                }
                 // SE ASUME QUE LOS DATOS YA FUERON VALIDADOS ANTES DE ENVIARSE
                 $sql = "SELECT * FROM productos WHERE nombre = '{$jsonOBJ->nombre}' AND eliminado = 0";
                 $result = $this->conexion->query($sql);
