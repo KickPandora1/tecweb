@@ -8,7 +8,7 @@ abstract class DataBase {
         $this->conexion = @mysqli_connect(
             'localhost',
             $user,
-            $pass,
+            'Ubi131418',
             $db
         );
     
@@ -16,7 +16,7 @@ abstract class DataBase {
          * NOTA: si la conexión falló $conexion contendrá false
          **/
         if(!$this->conexion) {
-            die('¡Base de datos NO conextada!');
+            die('Base de datos NO conectada');
         }
         /*else {
             echo 'Base de datos encontrada';
