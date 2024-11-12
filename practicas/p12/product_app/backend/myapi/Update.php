@@ -14,19 +14,18 @@
                 'status'  => 'error',
                 'message' => 'No se encontró el producto o ocurrió un error'
             );
-
+        
             if (!empty($producto)) {
-                // SE TRANSFORMA EL STRING DEL JSON A OBJETO
                 $jsonOBJ = json_decode($producto);
-                // Verificar que el id del producto existe en el JSON
+        
                 if (isset($jsonOBJ->id)) {
-                    // SE ASUME QUE LOS DATOS YA FUERON VALIDADOS ANTES DE ENVIARSE
                     $id = $jsonOBJ->id;
-                    $sql = "SELECT * FROM productos WHERE id = '{$id}' AND eliminado = 0";
+        
+                    // Verifica si hay un producto con el mismo nombre pero que no sea el actual
+                    $sql = "SELECT * FROM productos WHERE nombre = '{$jsonOBJ->nombre}' AND id != '{$id}' AND eliminado = 0";
                     $result = $this->conexion->query($sql);
-                    // Verificar si existe el producto con el id proporcionado
-                    if ($result->num_rows > 0) {
-                        // SE PREPARA EL UPDATE
+        
+                    if ($result->num_rows == 0) {
                         $this->conexion->set_charset("utf8");
                         $sql = "UPDATE productos SET
                                     nombre = '{$jsonOBJ->nombre}',
@@ -37,7 +36,7 @@
                                     unidades = {$jsonOBJ->unidades},
                                     imagen = '{$jsonOBJ->imagen}'
                                 WHERE id = '{$id}' AND eliminado = 0";
-                        // Ejecutar la consulta de actualización
+        
                         if ($this->conexion->query($sql)) {
                             $this->data['status'] = "success";
                             $this->data['message'] = "Producto actualizado correctamente";
@@ -45,18 +44,18 @@
                             $this->data['message'] = "ERROR: No se pudo ejecutar $sql. " . mysqli_error($this->conexion);
                         }
                     } else {
-                        // Producto no encontrado
-                        $this->data['message'] = "No se encontró el producto con el id especificado.";
+                        $this->data['message'] = "Ya existe un producto con ese nombre";
                     }
+        
                     $result->free();
                 } else {
-                    // Error si no se envió el id
                     $this->data['message'] = "El id del producto no fue proporcionado en el JSON.";
                 }
-                // Cerrar la conexión
+        
                 $this->conexion->close();
             }
         }
+        
         
         public function getData() {
             return json_encode($this->data, JSON_PRETTY_PRINT);

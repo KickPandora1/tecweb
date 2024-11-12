@@ -61,27 +61,51 @@ class Productos extends DataBase {
     }
 
     public function edit($jsonOBJ) {
-        // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
+        // Arreglo para la respuesta en JSON
         $this->data = array(
             'status'  => 'error',
             'message' => 'La consulta falló'
         );
-        // SE VERIFICA HABER RECIBIDO EL ID
-        if( isset($jsonOBJ->id) ) {
-            // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-            $sql =  "UPDATE productos SET nombre='{$jsonOBJ->nombre}', marca='{$jsonOBJ->marca}',";
-            $sql .= "modelo='{$jsonOBJ->modelo}', precio={$jsonOBJ->precio}, detalles='{$jsonOBJ->detalles}',"; 
-            $sql .= "unidades={$jsonOBJ->unidades}, imagen='{$jsonOBJ->imagen}' WHERE id={$jsonOBJ->id}";
-            $this->conexion->set_charset("utf8");
-            if ( $this->conexion->query($sql) ) {
-                $this->data['status'] =  "success";
-                $this->data['message'] =  "Producto actualizado";
+    
+        // Verificación de que se ha recibido el ID
+        if (isset($jsonOBJ->id)) {
+            // Consulta para verificar duplicados de nombre
+            $sql_check = "SELECT * FROM productos WHERE nombre = '{$jsonOBJ->nombre}' AND id != {$jsonOBJ->id} AND eliminado = 0";
+            $result = $this->conexion->query($sql_check);
+    
+            if ($result->num_rows == 0) {
+                // No hay duplicado, se procede a la actualización
+                $sql =  "UPDATE productos SET 
+                            nombre = '{$jsonOBJ->nombre}', 
+                            marca = '{$jsonOBJ->marca}', 
+                            modelo = '{$jsonOBJ->modelo}', 
+                            precio = {$jsonOBJ->precio}, 
+                            detalles = '{$jsonOBJ->detalles}', 
+                            unidades = {$jsonOBJ->unidades}, 
+                            imagen = '{$jsonOBJ->imagen}' 
+                        WHERE id = {$jsonOBJ->id}";
+                $this->conexion->set_charset("utf8");
+    
+                if ($this->conexion->query($sql)) {
+                    $this->data['status'] = "success";
+                    $this->data['message'] = "Producto actualizado";
+                } else {
+                    $this->data['message'] = "ERROR: No se pudo ejecutar la consulta de actualización. " . mysqli_error($this->conexion);
+                }
             } else {
-                $this->data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($this->conexion);
+                // Existe un producto con el mismo nombre
+                $this->data['message'] = "Ya existe un producto con ese nombre.";
             }
+    
+            // Liberar el resultado y cerrar conexión
+            $result->free();
             $this->conexion->close();
+        } else {
+            // Si no se recibió el ID
+            $this->data['message'] = "El ID del producto no fue proporcionado.";
         }
     }
+    
 
     public function list() {
         // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
