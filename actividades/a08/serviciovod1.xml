@@ -1,0 +1,97 @@
+<catalogovod>
+    <cuenta>
+        <correo>117.72.pandora11@gmail.com</correo>
+        <perfiles>
+            <perfil>
+                <usuario>Pancho</usuario>
+                <idioma>Esp</idioma>
+            </perfil>
+            <perfil>
+                <usuario>Karina</usuario>
+                <idioma>Ing</idioma>
+            </perfil>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero>
+                <nombre>Ficcion</nombre>
+                <titulo>
+                    <nombre>Interestellar</nombre>
+                    <duracion>169 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Ready Player One</nombre>
+                    <duracion>140 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Eterno resplandor de una mente sin recuerdos</nombre>
+                    <duracion>108 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>El efecto mariposa</nombre>
+                    <duracion>114 minutos</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Animacion</nombre>
+                <titulo>
+                    <nombre>Spider Man: a traves del Spider-verso</nombre>
+                    <duracion>140 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Ratatouille</nombre>
+                    <duracion>111 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Coraline y la puerta secreta</nombre>
+                    <duracion>115 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Soul</nombre>
+                    <duracion>100 minutos</duracion>
+                </titulo>
+            </genero>
+        </peliculas>
+        <programas>
+            <genero>
+                <nombre>Comedia</nombre>
+                <titulo>
+                    <nombre>The Big Bang Theory</nombre>
+                    <duracion>279 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>The Office</nombre>
+                    <duracion>201 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>BoJack Horseman</nombre>
+                    <duracion>77 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Better Off Ted</nombre>
+                    <duracion>26 capitulos</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Sci-Fi</nombre>
+                <titulo>
+                    <nombre>The Last of Us</nombre>
+                    <duracion>9 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Misfits</nombre>
+                    <duracion>37 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Sense8</nombre>
+                    <duracion>24 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Dark</nombre>
+                    <duracion>26 capitulos</duracion>
+                </titulo>
+            </genero>
+        </programas>
+    </contenido>
+</catalogovod>
